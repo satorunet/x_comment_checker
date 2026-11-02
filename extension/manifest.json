@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
-  "name": "X認知戦コメントチェッカー",
-  "version": "0.3.8",
+  "name": "Xコメント認知戦チェッカー",
+  "version": "0.3.9",
   "description": "Xのポスト画面で、返信ユーザーのフォロワー数・登録日・バッジ・発言を一覧化し、社会信用度と認知戦陽動の目安スコアを算出します。",
   "minimum_chrome_version": "111",
   "content_scripts": [
@@ -36,7 +36,7 @@
     "128": "icons/icon128.png"
   },
   "action": {
-    "default_title": "X認知戦コメントチェッカー：Xのポスト画面で右下のボタンを押してください",
+    "default_title": "Xコメント認知戦チェッカー：Xのポスト画面で右下のボタンを押してください",
     "default_icon": {
       "16": "icons/icon16.png",
       "32": "icons/icon32.png"

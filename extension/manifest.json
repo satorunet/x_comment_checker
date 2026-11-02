@@ -1,0 +1,45 @@
+{
+  "manifest_version": 3,
+  "name": "Xコメント陽動チェッカー",
+  "version": "0.3.5",
+  "description": "Xのポスト画面で、返信ユーザーのフォロワー数・登録日・バッジ・発言を一覧化し、社会信用度と認知戦陽動の目安スコアを算出します。",
+  "minimum_chrome_version": "111",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://x.com/*",
+        "https://twitter.com/*"
+      ],
+      "js": [
+        "src/hook.js"
+      ],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": [
+        "https://x.com/*",
+        "https://twitter.com/*"
+      ],
+      "js": [
+        "src/parser.js",
+        "src/scoring.js",
+        "src/content.js"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "Xコメント陽動チェッカー：Xのポスト画面で右下のボタンを押してください",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png"
+    }
+  }
+}

@@ -39,3 +39,7 @@ CHROME=/path/to/chrome PW_PATH=/path/to/node_modules/playwright SHOT=/tmp/shot.p
 ## 注意
 
 X の仕様が変わると動かなくなることがあります。自動スクロールでの収集は X の利用規約に触れる可能性があるので、ご自身の判断でお使いください。個人の制作物で、X Corp. とは関係ありません。
+
+## ライセンス
+
+[MIT License](LICENSE)

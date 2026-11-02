@@ -110,7 +110,7 @@ addEventListener('scroll',()=>{ if(scrollY>1000) load(); });
     'second comment gets own row': allRows.some((r) => r.length === 2 && /^\d+\/\d+ /.test(r[0]) && r[1].includes('追加の意見です')),
     'days under date': /^\d{4}-\d\d-\d\d 10日$/.test(rows.find((r) => r[2].includes('@user83726155'))[5]),
     'days use separators': /^2010-05-0\d \d{1,2},\d{3}日$/.test(rows.find((r) => r[2].includes('@veteran'))[5]),
-    'renamed button and panel': (await page.locator('#commenter-analyzer-root .fab').textContent()) === 'Xコメント陽動チェッカー' && (await page.locator('#commenter-analyzer-root h2').innerText()).startsWith('Xコメント陽動チェッカー'),
+    'renamed button and panel': (await page.locator('#commenter-analyzer-root .fab').textContent()) === 'X認知戦チェッカー' && (await page.locator('#commenter-analyzer-root h2').innerText()).startsWith('X認知戦チェッカー'),
     'csv bom': csv.charCodeAt(0) === 0xfeff,
     'no separate link': (await page.locator('#commenter-analyzer-root .why').count()) === 0,
     'tap again closes': await (async () => {

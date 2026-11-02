@@ -103,7 +103,7 @@
   sheet.replaceSync(CSS);
   shadow.adoptedStyleSheets = [sheet];
 
-  const fab = h('button', { class: 'fab', text: 'X認知戦チェッカー', onclick: () => openPanel() });
+  const fab = h('button', { class: 'fab', text: 'X認知戦コメントチェッカー', onclick: () => openPanel() });
   let overlay = null;
   let run = null; // 実行中の収集 { stop: boolean }
 
@@ -130,7 +130,7 @@
 
   function shell(title, ...actions) {
     const body = h('div', { class: 'body' });
-    const panel = h('div', { class: 'panel', role: 'dialog', 'aria-label': 'X認知戦チェッカー' },
+    const panel = h('div', { class: 'panel', role: 'dialog', 'aria-label': 'X認知戦コメントチェッカー' },
       h('header', null, h('h2', { text: title }), actions, h('button', { class: 'btn', text: '閉じる', onclick: closePanel })),
       body);
     overlay?.remove();
@@ -165,7 +165,7 @@
     const startY = window.scrollY;
     rateLimited = false;
     const count = h('b', { text: '0' });
-    const body = shell('X認知戦チェッカー', h('button', {
+    const body = shell('X認知戦コメントチェッカー', h('button', {
       class: 'btn', text: '収集を止めて集計', onclick: () => { me.stop = true; },
     }));
     body.append(h('div', { class: 'status' }, count, '件の返信を収集中… 画面を自動でスクロールしています'));
@@ -266,13 +266,13 @@
   function showResult(id) {
     const { focal, replies } = currentReplies(id);
     if (!focal) {
-      const body = shell('X認知戦チェッカー', h('button', { class: 'btn', text: '再読み込み', onclick: () => location.reload() }));
+      const body = shell('X認知戦コメントチェッカー', h('button', { class: 'btn', text: '再読み込み', onclick: () => location.reload() }));
       body.append(h('div', { class: 'status', text: '投稿データを取得できませんでした。ページを再読み込みしてから、もう一度お試しください。' }));
       return;
     }
     const result = XCA.analyze(focal, replies);
     const { summary: m } = result;
-    const body = shell(`X認知戦チェッカー — ${m.users}人 / ${m.comments}件`,
+    const body = shell(`X認知戦コメントチェッカー — ${m.users}人 / ${m.comments}件`,
       h('button', { class: 'btn', text: 'さらに収集', onclick: openPanel }),
       h('button', { class: 'btn', text: 'CSV保存', onclick: () => downloadCsv(result, id) }));
 

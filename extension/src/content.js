@@ -243,7 +243,7 @@
   }
 
   function downloadCsv(result, id) {
-    const header = ['認知戦度', '社会信用度スコア', 'ユーザー名', '表示名', 'フォロワー数', 'フォロー数', '総投稿数', '登録日', 'バッジ', '根拠', '発言日時', '発言', 'いいね数', '表示数', '発言URL'];
+    const header = ['認知戦度', '信用度', 'ユーザー名', '表示名', 'フォロワー数', 'フォロー数', '総投稿数', '登録日', 'バッジ', '根拠', '発言日時', '発言', 'いいね数', '表示数', '発言URL'];
     const lines = [header.map(csvCell).join(',')];
     for (const r of result.rows) {
       const why = r.psyop.signals.map((x) => `${x.label}(${x.points > 0 ? '+' : ''}${x.points})`).join(' / ');
@@ -284,12 +284,12 @@
       h('div', { class: 'cards' },
         card('スレッド認知戦指数', String(m.threadIndex), psyopClass(m.threadIndex)),
         card('平均 認知戦度', String(m.avgPsyop), psyopClass(m.avgPsyop)),
-        card('平均 社会信用度', String(m.avgCredibility), credClass(m.avgCredibility)),
+        card('平均 信用度', String(m.avgCredibility), credClass(m.avgCredibility)),
         card('高スコア（50以上）', `${m.high}人`),
         card('登録半年未満', pct(m.newShare)),
         card('青バッジ', pct(m.blueShare)),
         card('同文投稿グループ', `${result.clusters.length}組`)),
-      h('p', { class: 'note', text: '認知戦度は +100（疑わしい）〜 −100（信頼できる）で、0が中立です。公開プロフィールと文面から機械的に算出した目安で、高スコアでも工作と断定できず、マイナスでも信頼を保証するものではありません。認知戦度・社会信用度の数値をタップすると根拠を確認できます。' }));
+      h('p', { class: 'note', text: '認知戦度は +100（疑わしい）〜 −100（信頼できる）で、0が中立です。公開プロフィールと文面から機械的に算出した目安で、高スコアでも工作と断定できず、マイナスでも信頼を保証するものではありません。認知戦度・信用度の数値をタップすると根拠を確認できます。' }));
 
     const search = h('input', { type: 'search', placeholder: 'ユーザー名・発言を検索', 'aria-label': '検索' });
     const blueOnly = h('input', { type: 'checkbox' });
@@ -298,7 +298,7 @@
 
     const cols = [
       { key: 'psyop', label: '認知戦度', num: true, get: (r) => r.psyop.score },
-      { key: 'cred', label: '社会信用度', num: true, get: (r) => r.credibility.score },
+      { key: 'cred', label: '信用度', num: true, get: (r) => r.credibility.score },
       { key: 'name', label: 'ユーザー', get: (r) => r.user.screenName.toLowerCase() },
       { key: 'followers', label: 'フォロワー', num: true, get: (r) => r.user.followers },
       { key: 'following', label: 'フォロー', num: true, get: (r) => r.user.following },
@@ -357,7 +357,7 @@
       return h('tr', { class: 'detail' }, h('td', { colspan: cols.length }, h('div', { class: 'cols' },
         h('div', null, h('h4', { text: `認知戦度 ${r.psyop.score}（${XCA.psyopLevel(r.psyop.score)}）` }),
           r.psyop.signals.length ? list(r.psyop.signals, (x) => `${x.points > 0 ? '+' : ''}${x.points}`) : '該当なし'),
-        h('div', null, h('h4', { text: `社会信用度スコア ${r.credibility.score}` }),
+        h('div', null, h('h4', { text: `信用度 ${r.credibility.score}` }),
           list(r.credibility.parts, (x) => `${Math.round(x.points)} / ${x.max}`)),
         h('div', null, h('h4', { text: 'プロフィール' }),
           h('div', { text: r.user.bio || '自己紹介なし' }),

@@ -121,7 +121,7 @@ addEventListener('scroll',()=>{ if(scrollY>1000) load(); });
       const b = page.locator('#commenter-analyzer-root .cred-btn').first();
       await b.click();
       const d = page.locator('#commenter-analyzer-root .detail');
-      const opened = (await d.count()) === 1 && (await d.innerText()).includes('社会信用度スコア');
+      const opened = (await d.count()) === 1 && (await d.innerText()).includes('信用度');
       await page.locator('#commenter-analyzer-root .cred-btn').first().click();
       return opened && (await d.count()) === 0;
     })(),
